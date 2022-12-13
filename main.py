@@ -1,11 +1,9 @@
-import calendar
 import sys
-import time
 
 
 def algorytm(plik):
     try:
-        with open(plik, "r") as f:
+        with open("input/" + plik, "r") as f:
             lines = [int(line.rstrip()) for line in f]
         f.close()
 
@@ -22,7 +20,7 @@ def algorytm(plik):
         if len(ludzie) != ile:
             raise Exception
 
-        wynik = ile
+        wynik = int(ile)
         k = ile - 1
 
         ludzie.sort()
@@ -37,14 +35,14 @@ def algorytm(plik):
                     break
                 if ludzie[k] + ludzie[i] > max_waga_kajaka:
                     k -= 1
-        f = open(f"output/"+str(calendar.timegm(time.gmtime())) + "_" + str(plik), "w")
-        f.write(str(wynik))
-        f.close()
 
     except Exception:
-        print("Błędne dane")
+        wynik = "Bledne dane"
+    f = open(f"output/out" + str(plik.replace("in", "")), "w")
+    f.write(str(wynik))
+    f.close()
 
 
 pliki = sys.argv
-algorytm(pliki[1])
-algorytm(pliki[2])
+for plik in pliki[1:]:
+    algorytm(plik)
