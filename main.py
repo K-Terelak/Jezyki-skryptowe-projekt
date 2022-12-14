@@ -17,7 +17,7 @@ def algorytm(plik):
             raise Exception
 
         ludzie = lines[2:]
-        if len(ludzie) != ile:
+        if len(ludzie) != ile or min(ludzie)<5 or max(ludzie)>max_waga_kajaka:
             raise Exception
 
         wynik = int(ile)
